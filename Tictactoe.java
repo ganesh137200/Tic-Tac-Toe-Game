@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class TicTacToe {
+public class Tictactoe {
 
     static char player1Symbol;
     static char player2Symbol;
