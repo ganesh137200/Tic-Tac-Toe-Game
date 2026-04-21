@@ -1,44 +1,22 @@
-import java.util.Random;
+import java.util.Scanner;
 
 public class Tictactoe {
 
-    static char player1Symbol;
-    static char player2Symbol;
-    static int currentPlayer; // 1 or 2
-
     public static void main(String[] args) {
 
-        // Perform toss and assign symbols
-        tossAndAssign();
+        int slot = getUserInput();
 
-        // Display result
-        displayGameSetup();
+        System.out.println("You selected slot: " + slot);
     }
 
-    // UC2: Toss and assign symbols
-    public static void tossAndAssign() {
-        Random rand = new Random();
+    // Method to get user input
+    public static int getUserInput() {
 
-        int toss = rand.nextInt(2); // 0 or 1
+        Scanner scanner = new Scanner(System.in);
 
-        if (toss == 0) {
-            currentPlayer = 1;
-            player1Symbol = 'X';
-            player2Symbol = 'O';
-        } else {
-            currentPlayer = 2;
-            player2Symbol = 'X';
-            player1Symbol = 'O';
-        }
-    }
+        System.out.print("Enter a slot number (1-9): ");
+        int slot = scanner.nextInt();
 
-    // Display the result of toss
-    public static void displayGameSetup() {
-        System.out.println("=== Game Setup ===");
-
-        System.out.println("Player 1 Symbol: " + player1Symbol);
-        System.out.println("Player 2 Symbol: " + player2Symbol);
-
-        System.out.println("Player " + currentPlayer + " will start first!");
+        return slot;
     }
 }
