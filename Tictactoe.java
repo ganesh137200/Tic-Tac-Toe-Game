@@ -1,36 +1,39 @@
-import java.util.Scanner;
+public class TicTacToe {
 
-public class Tictactoe {
+    // Method to validate move
+    public static boolean isValidMove(char[][] board, int row, int col) {
 
-    // Utility method to convert slot to row & column
-    public static int[] getRowCol(int slot) {
-
-        if (slot < 1 || slot > 9) {
-            System.out.println("Invalid slot! Enter number between 1-9.");
-            return null;
+        // Check boundaries
+        if (row < 0 || row > 2 || col < 0 || col > 2) {
+            System.out.println("Invalid position! Row and column must be between 0 and 2.");
+            return false;
         }
 
-        int index = slot - 1;     // zero-based index
-        int row = index / 3;      // row calculation
-        int col = index % 3;      // column calculation
+        // Check if cell is empty
+        if (board[row][col] != ' ') {
+            System.out.println("Cell already occupied!");
+            return false;
+        }
 
-        return new int[]{row, col};
+        return true;
     }
 
     public static void main(String[] args) {
 
-        Scanner sc = new Scanner(System.in);
+        // Sample board
+        char[][] board = {
+                {'X', 'O', ' '},
+                {' ', 'X', ' '},
+                {'O', ' ', ' '}
+        };
 
-        System.out.print("Enter slot number (1-9): ");
-        int slot = sc.nextInt();
+        int row = 1;
+        int col = 1;
 
-        int[] position = getRowCol(slot);
-
-        if (position != null) {
-            System.out.println("Row: " + position[0]);
-            System.out.println("Column: " + position[1]);
+        if (isValidMove(board, row, col)) {
+            System.out.println("Move is valid!");
+        } else {
+            System.out.println("Move rejected!");
         }
-
-        sc.close();
     }
 }
