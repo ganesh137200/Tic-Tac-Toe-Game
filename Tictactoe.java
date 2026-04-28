@@ -1,39 +1,50 @@
-public class TicTacToe {
+public class Ticytactoe {
 
-    // Method to validate move
+    // UC5: Validate move (reuse this)
     public static boolean isValidMove(char[][] board, int row, int col) {
+        return row >= 0 && row < 3 &&
+               col >= 0 && col < 3 &&
+               board[row][col] == ' ';
+    }
 
-        // Check boundaries
-        if (row < 0 || row > 2 || col < 0 || col > 2) {
-            System.out.println("Invalid position! Row and column must be between 0 and 2.");
-            return false;
+    // UC6: Place move on board
+    public static void placeMove(char[][] board, int row, int col, char symbol) {
+
+        if (isValidMove(board, row, col)) {
+            board[row][col] = symbol;
+            System.out.println("Move placed successfully!");
+        } else {
+            System.out.println("Invalid move. Cannot place symbol.");
         }
+    }
 
-        // Check if cell is empty
-        if (board[row][col] != ' ') {
-            System.out.println("Cell already occupied!");
-            return false;
+    // Utility to print board
+    public static void printBoard(char[][] board) {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                System.out.print(board[i][j] + " ");
+            }
+            System.out.println();
         }
-
-        return true;
     }
 
     public static void main(String[] args) {
 
-        // Sample board
+        // Initialize empty board
         char[][] board = {
-                {'X', 'O', ' '},
-                {' ', 'X', ' '},
-                {'O', ' ', ' '}
+                {' ', ' ', ' '},
+                {' ', ' ', ' '},
+                {' ', ' ', ' '}
         };
 
+        // Example move
         int row = 1;
         int col = 1;
+        char symbol = 'X';
 
-        if (isValidMove(board, row, col)) {
-            System.out.println("Move is valid!");
-        } else {
-            System.out.println("Move rejected!");
-        }
+        placeMove(board, row, col, symbol);
+
+        // Print updated board
+        printBoard(board);
     }
 }
