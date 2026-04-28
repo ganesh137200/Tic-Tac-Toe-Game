@@ -2,26 +2,35 @@ import java.util.Scanner;
 
 public class Tictactoe {
 
-    public static void main(String[] args) {
+    // Utility method to convert slot to row & column
+    public static int[] getRowCol(int slot) {
 
-        int slot = getUserInput();
+        if (slot < 1 || slot > 9) {
+            System.out.println("Invalid slot! Enter number between 1-9.");
+            return null;
+        }
 
-        int row = (slot - 1) / 3;
-        int col = (slot - 1) % 3;
+        int index = slot - 1;     // zero-based index
+        int row = index / 3;      // row calculation
+        int col = index % 3;      // column calculation
 
-        System.out.println("Slot: " + slot);
-        System.out.println("Row: " + row);
-        System.out.println("Column: " + col);
+        return new int[]{row, col};
     }
 
-    // Method to get user input
-    public static int getUserInput() {
+    public static void main(String[] args) {
 
-        Scanner scanner = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
-        System.out.print("Enter a slot number (1-9): ");
-        int slot = scanner.nextInt();
+        System.out.print("Enter slot number (1-9): ");
+        int slot = sc.nextInt();
 
-        return slot;
+        int[] position = getRowCol(slot);
+
+        if (position != null) {
+            System.out.println("Row: " + position[0]);
+            System.out.println("Column: " + position[1]);
+        }
+
+        sc.close();
     }
 }
